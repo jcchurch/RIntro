@@ -9,7 +9,7 @@
 
 \begin{document}
 
-\begin{frame}[plain] \titlepage \end{frame}
+\frame[plain]{ \titlepage }
 
 \begin{frame}{A Gentle Introduction to R}
 
@@ -18,7 +18,12 @@
     \begin{itemize}
         \item Why R?
         \item Tools that I'm using in this presentation.
+        \item Important Data Types
         \item Random Number Generation
+        \item Plotting
+        \item File Input
+        \item Simple Linear Regression
+        \item Multiple Linear Regression
     \end{itemize}
 
 \end{frame}
@@ -34,6 +39,58 @@
 \end{frame}
 
 \begin{frame}{Random Number Generation}
+
+    Stupid Math Tricks: Computing Pi using Random Numbers
+
+    First: The Theory
+
+    \begin{itemize}
+        \item A square with sides of length 2 has its center at the origin.
+        \item A circle with a radius of length 1 has its center at the origin.
+        \item The length of the side of the square is 2 times the radius of the circle. 
+	\item Area of the square: $(2r)^2$ or $4r^2$ or $4$.
+	\item Area of the circle: $\pi r^2$ or $\pi$.
+	\item The ratio of the area of the two shapes is
+
+	\begin{math}
+	\frac{\pi}{4} = \frac{Area\:of\:the\:Circle}{Area\:of\:the\:Square}
+	\end{math}
+
+	\item This means we can write $\pi$ as
+
+	\begin{math}
+	\pi = \frac{4 \times Area\:of\:the\:Circle}{Area\:of\:the\:Square}
+	\end{math}
+
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Random Number Generation}
+
+    Stupid Math Tricks: Computing Pi using Random Numbers
+
+    Second: The Practice
+
+    \begin{itemize}
+        \item Imagine our square is now a dartboard.
+	\item We have 1 million darts, all to throw at the dartboard.
+	\item All 1 million darts must land in the square.
+	\item We count the darts landing in the circle. (Our friend Pythagoras has an old formula for doing this.)
+	\item We then compute $\pi$:
+
+	\begin{math}
+	\pi = \frac{4 \times Area\:of\:the\:Circle}{Area\:of\:the\:Square} = \frac{4 \times Darts\:in\:the\:Circle}{1 million}
+	\end{math}
+
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Random Number Generation}
+
+    Stupid Math Tricks: Computing Pi using Random Numbers
+
+    Third: The Code
+
 \end{frame}
 
 \end{document}
