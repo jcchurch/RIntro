@@ -368,4 +368,142 @@ F-statistic: 5.979 on 1 and 81 DF,  p-value: 0.01664
 
 \end{frame}
 
+\section{Multivariate Analysis}
+
+\subsection{Define our problem}
+
+\begin{frame}{A Story About A Restaurant}
+
+\begin{tabular}{|c|c|c||c|}
+\hline
+Store to Bus Station (m) & Floor Space ($m^2$) & Manager Age & Monthly Sales \hline \hline
+80 & 10 & 42 & 469 \\
+0 & 8 & 29 & 366
+200 & 8 & 33 & 371
+200 & 5 & 41 & 208
+300 & 7 & 33 & 246
+230 & 8 & 35 & 297
+40 & 7 & 40 & 363
+0 & 9 & 46 & 436
+330 & 6 & 44 & 198
+180 & 9 & 34 & 346
+\hline
+\end{tabular}
+
+\end{frame}
+
+\subsection{Prepare Our Data}
+
+\begin{frame}[fragile]{The Code}
+
+\begin{footnotesize}
+\begin{verbatim}
+nearestStore <- c(80,0,200,200,300,230,40,0,330,180)
+floorSpace <- c(10,8,8,5,7,8,7,9,6,9)
+shopManagerAge <- c(42,29,33,41,33,35,40,46,44,34)
+monthlySales <- c(469,366,371,208,246,297,363,436,198,364)
+\end{verbatim}
+\end{footnotesize}
+
+\end{frame}
+
+\subsection{Analyze Our Data}
+
+\begin{frame}[fragile]{The Report :: All 3 Variables}
+
+\begin{footnotesize}
+\begin{verbatim}
+> summary(lm(monthlySales ~ nearestStore + floorSpace
+                          + shopManagerAge))
+Coefficients:
+               Estimate Std. Error t value Pr(>|t|)    
+(Intercept)    17.69976   88.27609   0.201 0.847710    
+nearestStore   -0.33271    0.08184  -4.066 0.006609 ** 
+floorSpace     42.20883    6.56029   6.434 0.000667 ***
+shopManagerAge  1.08740    1.52345   0.714 0.502175    
+---
+Residual standard error: 25.32 on 6 degrees of freedom
+Multiple R-squared: 0.9495, Adjusted R-squared: 0.9243 
+F-statistic: 37.62 on 3 and 6 DF,  p-value: 0.000276 
+\end{verbatim}
+\end{footnotesize}
+
+\end{frame}
+
+\begin{frame}[fragile]{The Report :: Best 2 Variables}
+
+\begin{footnotesize}
+\begin{verbatim}
+> summary(lm(monthlySales ~ nearestStore + floorSpace))
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  65.32392   55.73834   1.172 0.279546    
+nearestStore -0.34088    0.07814  -4.362 0.003304 ** 
+floorSpace   41.51348    6.25612   6.636 0.000294 ***
+
+Residual standard error: 24.42 on 7 degrees of freedom
+Multiple R-squared: 0.9452, Adjusted R-squared: 0.9296 
+F-statistic: 60.41 on 2 and 7 DF,  p-value: 3.844e-05
+\end{verbatim}
+\end{footnotesize}
+
+\end{frame}
+
+\begin{frame}[fragile]{The Report :: Best Variable}
+
+\begin{footnotesize}
+\begin{verbatim}
+> summary(lm(monthlySales ~ floorSpace))
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  -91.279     76.914  -1.187 0.269366    
+floorSpace    54.945      9.824   5.593 0.000514 ***
+
+Residual standard error: 44.04 on 8 degrees of freedom
+Multiple R-squared: 0.7964, Adjusted R-squared: 0.7709 
+F-statistic: 31.28 on 1 and 8 DF,  p-value: 0.0005144
+\end{verbatim}
+\end{footnotesize}
+
+\end{frame}
+
+\subsection{The Conclusion}
+
+\begin{frame}[fragile]{The Conclusion to our Restaurant Story}
+
+Using the `lm' (Linear Model) function in R, we were able to rank the three independent variables by order of importance:
+
+\begin{itemize}
+\item Floor Space
+\item Distance from Store to Bus Stop
+\item Manager Age
+\end{itemize}
+
+We discovered that both the size of the restaurant and the distance to the bus stop had an impact on the monthly sales of a restaurant. The age of the manager only had a noisy impact on the monthly sales.
+
+\end{frame}
+
+\begin{frame}{Conclusions to this Presentation}
+
+\begin{itemize}
+\item The Good: Plotting data
+\item The Good: Analyzing data
+\item The Good: Working with large amounts of data
+\item The Good: R+RStudio provide a clean, relaxed environment for working with data.
+\item The Bad: The R syntax is non-intuitive.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Resources}
+
+\begin{itemize}
+\item R: \verb+http://www.r-project.org/+
+\item RStudio: \verb+http://www.rstudio.com/+
+\item This Presentation: \verb+https://github.com/jcchurch/RIntro+
+\item Manga Guide to Statistics: \verb+http://nostarch.com/mg_statistics.htm+
+\end{itemize}
+
+\end{frame}
+
 \end{document}
