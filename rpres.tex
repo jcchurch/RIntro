@@ -17,13 +17,10 @@
 
     \begin{itemize}
         \item Why R?
-        \item Tools that I'm using in this presentation.
-        \item Important Data Types
-        \item The Basics
+        \item Introduction
         \item Random Number Generation
         \item Computing Pi
         \item Data Analysis with Data Frames
-        \item Simple Linear Regression
         \item Multiple Linear Regression
     \end{itemize}
 
@@ -135,6 +132,7 @@ Like arrays, but better.
 
 Is it true that `rnorm' produces a normal curve with a mean of 0 and a standard deviation of 1?
 
+\begin{footnotesize}
 \begin{verbatim}
 > v <- rnorm(1000)
 > mean(v)
@@ -144,9 +142,10 @@ Is it true that `rnorm' produces a normal curve with a mean of 0 and a standard 
 > plot(v)
 > hist(v)
 \end{verbatim}
+\end{footnotesize}
 
-\includegraphics[scale=0.2]{normal_plot.eps}
-\includegraphics[scale=0.2]{normal_hist.eps}
+\includegraphics[scale=0.24]{normal_plot.eps}
+\includegraphics[scale=0.24]{normal_hist.eps}
 
 \end{frame}
 
@@ -155,6 +154,7 @@ Is it true that `rnorm' produces a normal curve with a mean of 0 and a standard 
 
 Is it true that `runif' produces a uniform curve with a low of 0 and a high of 1?
 
+\begin{footnotesize}
 \begin{verbatim}
 > v <- runif(1000)
 > min(v)
@@ -164,9 +164,10 @@ Is it true that `runif' produces a uniform curve with a low of 0 and a high of 1
 > plot(v)
 > hist(v)
 \end{verbatim}
+\end{footnotesize}
 
-\includegraphics[scale=0.2]{uniform_plot.eps}
-\includegraphics[scale=0.2]{uniform_hist.eps}
+\includegraphics[scale=0.24]{uniform_plot.eps}
+\includegraphics[scale=0.24]{uniform_hist.eps}
 
 \end{frame}
 
@@ -267,6 +268,7 @@ Is it true that `runif' produces a uniform curve with a low of 0 and a high of 1
 
 \begin{frame}[fragile]{Data Analysis :: Reading CSV Files}
 
+\begin{footnotesize}
 \begin{verbatim}
 > setwd("~/code/RIntro") # Your working directory
 > tax <- read.csv('Tax_Year_2007_County_Income_Data.csv')
@@ -284,6 +286,7 @@ Is it true that `runif' produces a uniform curve with a low of 0 and a high of 1
      "Adjusted.Gross" 
  [8] "Wages"           "Dividend"        "Interest"       
 \end{verbatim}
+\end{footnotesize}
 
 \end{frame}
 
@@ -304,7 +307,7 @@ Does wealth influence the number of exemptions?
 \end{verbatim}
 \end{footnotesize}
 
-\includegraphics[scale=0.2]{income_v_exemptions.eps}
+\includegraphics[scale=0.24]{income_v_exemptions.eps}
 
 \end{frame}
 
@@ -317,11 +320,9 @@ Does the number of exemptions \textbf{depend} on the adjusted gross income?
 \begin{verbatim}
 > summary(lm(tax$Exemption.Per.Return ~ tax$Adjusted.Gross.Per.Return))
 Coefficients:
-                               Estimate Std. Error t value Pr(>|t|)    
-(Intercept)                   2.0408565  0.0084952 240.237  < 2e-16 ***
-tax$Adjusted.Gross.Per.Return 0.0008869  0.0001891   4.691 2.83e-06 ***
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+              Estimate Std.      Error t value Pr(>|t|)    
+(Intercept)       2.0408565  0.0084952 240.237  < 2e-16 ***
+tax$Adj...        0.0008869  0.0001891   4.691 2.83e-06 ***
 
 Residual standard error: 0.1372 on 3191 degrees of freedom
 Multiple R-squared: 0.006849,   Adjusted R-squared: 0.006538 
@@ -341,7 +342,7 @@ Does wealth influence the number of exemptions in Mississippi?
 \end{verbatim}
 \end{footnotesize}
 
-\includegraphics[scale=0.2]{income_v_exemptions_ms.eps}
+\includegraphics[scale=0.24]{income_v_exemptions_ms.eps}
 
 \end{frame}
 
@@ -374,19 +375,19 @@ F-statistic: 5.979 on 1 and 81 DF,  p-value: 0.01664
 
 \begin{frame}{A Story About A Restaurant}
 
-\begin{tabular}{|c|c|c||c|}
+\begin{tabular}{|c|c|c|c|}
 \hline
-Store to Bus Station (m) & Floor Space ($m^2$) & Manager Age & Monthly Sales \hline \hline
+To Bus Station (m) & Floor Space ($m^2$) & Manager Age & Sales  \\ \hline \hline
 80 & 10 & 42 & 469 \\
-0 & 8 & 29 & 366
-200 & 8 & 33 & 371
-200 & 5 & 41 & 208
-300 & 7 & 33 & 246
-230 & 8 & 35 & 297
-40 & 7 & 40 & 363
-0 & 9 & 46 & 436
-330 & 6 & 44 & 198
-180 & 9 & 34 & 346
+0 & 8 & 29 & 366 \\
+200 & 8 & 33 & 371 \\
+200 & 5 & 41 & 208 \\
+300 & 7 & 33 & 246 \\
+230 & 8 & 35 & 297 \\
+40 & 7 & 40 & 363 \\
+0 & 9 & 46 & 436 \\
+330 & 6 & 44 & 198 \\
+180 & 9 & 34 & 346 \\
 \hline
 \end{tabular}
 
@@ -398,7 +399,7 @@ Store to Bus Station (m) & Floor Space ($m^2$) & Manager Age & Monthly Sales \hl
 
 \begin{footnotesize}
 \begin{verbatim}
-nearestStore <- c(80,0,200,200,300,230,40,0,330,180)
+toBusStation <- c(80,0,200,200,300,230,40,0,330,180)
 floorSpace <- c(10,8,8,5,7,8,7,9,6,9)
 shopManagerAge <- c(42,29,33,41,33,35,40,46,44,34)
 monthlySales <- c(469,366,371,208,246,297,363,436,198,364)
@@ -413,12 +414,12 @@ monthlySales <- c(469,366,371,208,246,297,363,436,198,364)
 
 \begin{footnotesize}
 \begin{verbatim}
-> summary(lm(monthlySales ~ nearestStore + floorSpace
+> summary(lm(monthlySales ~ toBusStation + floorSpace
                           + shopManagerAge))
 Coefficients:
                Estimate Std. Error t value Pr(>|t|)    
 (Intercept)    17.69976   88.27609   0.201 0.847710    
-nearestStore   -0.33271    0.08184  -4.066 0.006609 ** 
+toBusStation   -0.33271    0.08184  -4.066 0.006609 ** 
 floorSpace     42.20883    6.56029   6.434 0.000667 ***
 shopManagerAge  1.08740    1.52345   0.714 0.502175    
 ---
@@ -434,11 +435,11 @@ F-statistic: 37.62 on 3 and 6 DF,  p-value: 0.000276
 
 \begin{footnotesize}
 \begin{verbatim}
-> summary(lm(monthlySales ~ nearestStore + floorSpace))
+> summary(lm(monthlySales ~ toBusStation + floorSpace))
 Coefficients:
              Estimate Std. Error t value Pr(>|t|)    
 (Intercept)  65.32392   55.73834   1.172 0.279546    
-nearestStore -0.34088    0.07814  -4.362 0.003304 ** 
+toBusStation -0.34088    0.07814  -4.362 0.003304 ** 
 floorSpace   41.51348    6.25612   6.636 0.000294 ***
 
 Residual standard error: 24.42 on 7 degrees of freedom
@@ -495,7 +496,7 @@ We discovered that both the size of the restaurant and the distance to the bus s
 
 \end{frame}
 
-\begin{frame}{Resources}
+\begin{frame}[fragile]{Resources}
 
 \begin{itemize}
 \item R: \verb+http://www.r-project.org/+
